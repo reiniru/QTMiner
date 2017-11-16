@@ -1,0 +1,19 @@
+DROP DATABASE IF EXISTS mapdb;
+CREATE DATABASE mapdb;
+
+DROP USER MapUser@localhost;
+CREATE USER MapUser@localhost IDENTIFIED BY 'map';
+GRANT CREATE, SELECT, INSERT, DELETE ON mapdb.* TO MapUser@localhost;
+
+USE mapdb;
+DROP TABLE IF EXISTS `playtennis`;
+CREATE TABLE `playtennis` (
+  `outlook` varchar(10) DEFAULT NULL,
+  `temperature` float(5,2) DEFAULT NULL,
+  `umidity` varchar(10) DEFAULT NULL,
+  `wind` varchar(10) DEFAULT NULL,
+  `play` varchar(10) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+LOCK TABLES `playtennis` WRITE;
+INSERT INTO `playtennis` VALUES ('sunny',30.30,'high','weak','no'),('sunny',30.30,'high','strong','no'),('overcast',30.00,'high','weak','yes'),('rain',13.00,'high','weak','yes'),('rain',0.00,'normal','weak','yes'),('rain',0.00,'normal','strong','no'),('overcast',0.10,'normal','strong','yes'),('sunny',13.00,'high','weak','no'),('sunny',0.10,'normal','weak','yes'),('rain',12.00,'normal','weak','yes'),('sunny',12.50,'normal','strong','yes'),('overcast',12.50,'high','strong','yes'),('overcast',29.21,'normal','weak','yes'),('rain',12.50,'high','strong','no');
